@@ -4,6 +4,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @books = Book.all
   end
+
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -16,6 +17,7 @@ class BooksController < ApplicationController
       render "index"
     end
   end
+
   def edit
     book = Book.find(params[:id])
     unless book.user_id == current_user.id
@@ -23,6 +25,7 @@ class BooksController < ApplicationController
     end
     @book = Book.find(params[:id])
   end
+
   def update
     @book = Book.find(params[:id])
     @book.user_id = current_user.id
@@ -33,16 +36,21 @@ class BooksController < ApplicationController
       render "edit"
     end
   end
+
   def show
     @book = Book.find(params[:id])
     @user = @book.user
     @booknew = Book.new
+    @book_comment = BookComment.new
   end
+
   def destroy
     book = Book.find(params[:id])
     book.destroy
     redirect_to books_path
   end
+
+
 
   private
     def book_params
