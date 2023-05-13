@@ -37,7 +37,6 @@ describe "[STEP1] ユーザログイン前のテスト" do
     before do
       visit "/home/about"
     end
-
     context "表示内容の確認" do
       it "URLが正しい" do
         expect(page).to have_current_path "/home/about"
